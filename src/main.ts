@@ -4,7 +4,7 @@ import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
 
 import { AppModule } from './app.module';
 
-import { ConfigurationService } from './infra/configuration/configuration.service';
+import { ConfigurationService } from 'src/shared/configuration/configuration.service';
 
 declare const module: any;
 
@@ -14,11 +14,11 @@ async function bootstrap() {
   const config = app.get(ConfigurationService);
 
   const options = new DocumentBuilder()
-  .setTitle('User Api')
-  .setDescription('Just some api for a test.')
-  .setVersion('1.0')
-  .build();
-  
+    .setTitle('User Api')
+    .setDescription('Just some api for a test.')
+    .setVersion('1.0')
+    .build();
+
   const document = SwaggerModule.createDocument(app, options);
 
   SwaggerModule.setup('api', app, document);
