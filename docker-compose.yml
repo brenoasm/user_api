@@ -20,7 +20,32 @@ services:
         networks:
             - mysql-compose-network
 
+    # elastic_search:
+    #     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    #     container_name: elastic_search
+    #     environment:
+    #         - node.name=es
+    #         - cluster.name=es-docker-cluster
+    #         - discovery.type=single-node
+    #         - bootstrap.memory_lock=true
+    #         - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    #     ulimits:
+    #         memlock:
+    #             soft: -1
+    #             hard: -1
+    #     volumes:
+    #         - es-data:/usr/share/elasticsearch/data
+    #     ports:
+    #         - 9200:9200
+        # networks:
+        #     - elastic
+
+# volumes:
+    # es-data:
 
 networks: 
     mysql-compose-network:
         driver: bridge
+
+    # elastic:
+    #     driver: bridge

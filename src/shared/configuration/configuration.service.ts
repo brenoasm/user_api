@@ -4,7 +4,7 @@ import * as fs from "fs";
 
 @Injectable()
 export class ConfigurationService {
-    private readonly envConfig: { [key: string]: string };
+  private readonly envConfig: { [key: string]: string };
 
   constructor() {
     this.envConfig = dotenv.parse(fs.readFileSync(".env"));
