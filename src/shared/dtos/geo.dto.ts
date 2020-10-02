@@ -1,4 +1,4 @@
-export interface Geo {
+export class GeoDTO {
   id: number
   lat: string
   lng: string

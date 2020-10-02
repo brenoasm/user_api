@@ -1,6 +1,6 @@
-import { Geo } from './geo';
+import { GeoDTO } from './geo.dto';
 
-export interface Address {
+export class AddressDTO {
   id: number
   street: string
   suite: string
@@ -8,5 +8,5 @@ export interface Address {
   zipcode: string
   geoId: number
 
-  geo: Geo
+  geo: GeoDTO
 }

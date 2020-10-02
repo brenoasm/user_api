@@ -1,8 +1,8 @@
-import { User as UserTO } from '../../shared/types/user';
+import { UserDTO } from '../../shared/dtos/user.dto';
 import { UserCreateInput } from '@prisma/client';
 import { UserWithIncludes } from './models/user-with-includes';
 
-export const transferObjectToUserCreate = (user: UserTO): UserCreateInput => ({
+export const transferObjectToUserCreate = (user: UserDTO): UserCreateInput => ({
   id: user.id,
   name: user.name,
   phone: user.phone,
@@ -31,7 +31,7 @@ export const transferObjectToUserCreate = (user: UserTO): UserCreateInput => ({
   },
 });
 
-export const modelToTransferObject = (userModel: UserWithIncludes): UserTO => ({
+export const modelToTransferObject = (userModel: UserWithIncludes): UserDTO => ({
   id: userModel.id,
   addressId: userModel.addressId,
   companyId: userModel.companyId,

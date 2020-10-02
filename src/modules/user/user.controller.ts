@@ -2,8 +2,10 @@ import { Controller, Get } from '@nestjs/common';
 import { DownloadUsersUsecaseService } from './usecases/download-users-usecase/download-users-usecase.service';
 import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/user-with-suite-usecase.service';
 
-import { User } from 'src/shared/types/user';
+import { UserDTO } from 'src/shared/dtos/user.dto';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(
@@ -12,12 +14,12 @@ export class UserController {
   ) { }
 
   @Get('downloadUsers')
-  async downloadUsers(): Promise<User[]> {
+  async downloadUsers(): Promise<UserDTO[]> {
     return this.downloadUserUsecase.exec();
   }
 
   @Get('saveUsersWithSuite')
-  async saveUsersWithSuite(): Promise<User[]> {
+  async saveUsersWithSuite(): Promise<UserDTO[]> {
     return this.userWithSuiteUsecase.exec();
   }
 }

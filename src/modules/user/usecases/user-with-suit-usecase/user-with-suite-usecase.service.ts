@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { ExternalUserService } from 'src/shared/services/external-user/external-user.service';
-import { User as UserTO } from 'src/shared/types/user';
+import { UserDTO as UserDTO } from 'src/shared/dtos/user.dto';
 
 import { modelToTransferObject, transferObjectToUserCreate } from '../../user.mapper';
 import { UserService } from '../../user.service';
@@ -8,14 +8,14 @@ import { UserService } from '../../user.service';
 import { Usecase } from 'src/shared/models/user-case';
 
 @Injectable()
-export class UserWithSuiteUsecaseService implements Usecase<UserTO[]> {
+export class UserWithSuiteUsecaseService implements Usecase<UserDTO[]> {
   constructor(
     private readonly userService: UserService,
     private readonly externalUserService: ExternalUserService,
     @Inject(Logger) private readonly logger: LoggerService
   ) { }
 
-  async exec(): Promise<UserTO[]> {
+  async exec(): Promise<UserDTO[]> {
     this.logger.log('Starting UserWithSuiteUsecaseService...');
 
     const users = await this.externalUserService.getUsers();

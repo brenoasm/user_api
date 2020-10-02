@@ -1,6 +1,4 @@
 import { Module, Logger } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { ConfigurationModule } from './shared/configuration/configuration.module';
 import { ConfigurationService } from './shared/configuration/configuration.service';
@@ -18,9 +16,7 @@ import { ServicesModule } from './shared/services/services.module';
     HttpClientModule,
     ServicesModule
   ],
-  controllers: [AppController],
   providers: [
-    AppService,
     ExternalUserService,
     ConfigurationService,
     Logger
