@@ -55,13 +55,6 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "email",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
       "field": "addressId",
       "type": "Int",
       "arity": "Required"
@@ -76,15 +69,8 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "phone",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "website",
-      "type": "String",
+      "field": "contactId",
+      "type": "Int",
       "arity": "Required"
     },
     {
@@ -180,6 +166,138 @@
       "value": "[id]"
     },
     {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "Contact",
+      "type": "Contact",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "Contact"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "Contact"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[contactId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "Contact"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Contact"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Contact",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Contact",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Contact",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Contact",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Contact",
+      "field": "email",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Contact",
+          "field": "email"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Contact",
+      "field": "phone",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Contact",
+      "field": "website",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Contact",
+      "field": "User",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateModel",
       "model": "Address"
     },
@@ -236,7 +354,7 @@
     {
       "tag": "CreateField",
       "model": "Address",
-      "field": "suit",
+      "field": "suite",
       "type": "String",
       "arity": "Required"
     },
@@ -308,6 +426,13 @@
       "value": "[id]"
     },
     {
+      "tag": "CreateField",
+      "model": "Address",
+      "field": "User",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateModel",
       "model": "Geo"
     },
@@ -366,6 +491,13 @@
       "model": "Geo",
       "field": "lng",
       "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Geo",
+      "field": "Address",
+      "type": "Address",
       "arity": "Required"
     },
     {
@@ -434,6 +566,13 @@
       "model": "Company",
       "field": "bs",
       "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "User",
+      "type": "User",
       "arity": "Required"
     }
   ]

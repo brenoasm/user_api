@@ -6,11 +6,10 @@ import {
   UserWhereUniqueInput,
   UserWhereInput,
   UserOrderByInput,
-  UserInclude
 } from '@prisma/client';
 
 import { PrismaService } from 'src/shared/prisma/prisma.service';
-import { UserWithIncludes } from './models/user-with-includes';
+import { UserWithIncludes } from '../../models/user-with-includes';
 
 @Injectable()
 export class UserService {
@@ -20,6 +19,7 @@ export class UserService {
     return this.prisma.user.findOne({
       where: userWhereUniqueInput,
       include: {
+        Contact: true,
         Address: { include: { Geo: true } },
         Company: true,
       },
@@ -47,6 +47,7 @@ export class UserService {
     return this.prisma.user.create({
       data,
       include: {
+        Contact: true,
         Address: { include: { Geo: true } },
         Company: true,
       },

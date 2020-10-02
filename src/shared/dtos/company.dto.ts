@@ -1,5 +1,5 @@
 export class CompanyDTO {
-  id: number
+  id?: number
   name: string
   catchPhrase: string
   bs: string

@@ -5,7 +5,7 @@ import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/u
 import { UserDTO } from 'src/shared/dtos/user.dto';
 import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 
-@ApiTags('users')
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(

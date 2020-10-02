@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ExternalUserService } from './external-user.service';
+import { FetchExternalUserService } from './external-user.service';
 
 describe('ExternalUserService', () => {
-  let service: ExternalUserService;
+  let service: FetchExternalUserService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ExternalUserService],
+      providers: [FetchExternalUserService],
     }).compile();
 
-    service = module.get<ExternalUserService>(ExternalUserService);
+    service = module.get<FetchExternalUserService>(FetchExternalUserService);
   });
 
   it('should be defined', () => {

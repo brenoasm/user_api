@@ -1,13 +1,18 @@
-import { UserDTO } from '../../shared/dtos/user.dto';
 import { UserCreateInput } from '@prisma/client';
+
+import { UserDTO } from '../../shared/dtos/user.dto';
 import { UserWithIncludes } from './models/user-with-includes';
 
 export const transferObjectToUserCreate = (user: UserDTO): UserCreateInput => ({
   id: user.id,
   name: user.name,
-  phone: user.phone,
-  website: user.website,
-  email: user.email,
+  Contact: {
+    create: {
+      phone: user.contact.phone,
+      website: user.contact.website,
+      email: user.contact.email,
+    }
+  },
   Company: {
     create: {
       bs: user.company.bs,
@@ -35,10 +40,14 @@ export const modelToTransferObject = (userModel: UserWithIncludes): UserDTO => (
   id: userModel.id,
   addressId: userModel.addressId,
   companyId: userModel.companyId,
-  email: userModel.email,
   name: userModel.name,
-  phone: userModel.phone,
-  website: userModel.website,
+  contactId: userModel.contactId,
+  contact: {
+    id: userModel.Contact.id,
+    email: userModel.Contact.email,
+    phone: userModel.Contact.phone,
+    website: userModel.Contact.website,
+  },
   company: {
     id: userModel.Company.id,
     bs: userModel.Company.bs,

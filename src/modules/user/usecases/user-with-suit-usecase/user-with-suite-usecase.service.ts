@@ -1,9 +1,9 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
-import { ExternalUserService } from 'src/shared/services/external-user/external-user.service';
+import { FetchExternalUserService } from 'src/modules/user/services/fetch-external-user/external-user.service';
 import { UserDTO as UserDTO } from 'src/shared/dtos/user.dto';
 
 import { modelToTransferObject, transferObjectToUserCreate } from '../../user.mapper';
-import { UserService } from '../../user.service';
+import { UserService } from '../../services/user-service/user.service';
 
 import { Usecase } from 'src/shared/models/user-case';
 
@@ -11,14 +11,14 @@ import { Usecase } from 'src/shared/models/user-case';
 export class UserWithSuiteUsecaseService implements Usecase<UserDTO[]> {
   constructor(
     private readonly userService: UserService,
-    private readonly externalUserService: ExternalUserService,
+    private readonly fetchExternalUserService: FetchExternalUserService,
     @Inject(Logger) private readonly logger: LoggerService
   ) { }
 
   async exec(): Promise<UserDTO[]> {
     this.logger.log('Starting UserWithSuiteUsecaseService...');
 
-    const users = await this.externalUserService.getUsers();
+    const users = await this.fetchExternalUserService.getUsers();
 
     if (users.length > 0) {
       const usersWithSuite = users.filter(user => {
@@ -40,10 +40,12 @@ export class UserWithSuiteUsecaseService implements Usecase<UserDTO[]> {
 
             return modelToTransferObject(insertedUser);
           } catch (error) {
-            this.logger.error('User already in the DB', error);
+            this.logger.error('Something happened when trying to insert a new user.', error.stack);
           }
         })
       );
+
+      this.logger.log('Ending UserWithSuiteUsecaseService...');
 
       return insertedUsers;
     }

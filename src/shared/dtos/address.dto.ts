@@ -1,7 +1,7 @@
 import { GeoDTO } from './geo.dto';
 
 export class AddressDTO {
-  id: number
+  id?: number
   street: string
   suite: string
   city: string
