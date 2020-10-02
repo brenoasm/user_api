@@ -1,20 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { ExternalUserService } from 'src/shared/services/external-user/external-user.service';
 import { User as UserTO } from 'src/shared/types/user';
-// import { Address as AddressModel } from '@prisma/client';
 
-import { transferObjectToUserCreate } from '../../user.mapper';
-
+import { modelToTransferObject, transferObjectToUserCreate } from '../../user.mapper';
 import { UserService } from '../../user.service';
 
+import { Usecase } from 'src/shared/models/user-case';
+
 @Injectable()
-export class UserWithSuiteUsecaseService {
+export class UserWithSuiteUsecaseService implements Usecase<UserTO[]> {
   constructor(
     private readonly userService: UserService,
-    private readonly externalUserService: ExternalUserService
+    private readonly externalUserService: ExternalUserService,
+    @Inject(Logger) private readonly logger: LoggerService
   ) { }
 
-  async saveUsersWithSuite(): Promise<UserTO[]> {
+  async exec(): Promise<UserTO[]> {
+    this.logger.log('Starting UserWithSuiteUsecaseService...');
+
     const users = await this.externalUserService.getUsers();
 
     if (users.length > 0) {
@@ -30,20 +33,22 @@ export class UserWithSuiteUsecaseService {
             });
 
             if (userInDb != null) {
-              return userInDb;
+              return modelToTransferObject(userInDb);
             }
 
             const insertedUser = await this.userService.createUser(transferObjectToUserCreate(user));
 
-            return insertedUser;
+            return modelToTransferObject(insertedUser);
           } catch (error) {
-            console.log(error)
+            this.logger.error('User already in the DB', error);
           }
         })
       );
 
-      console.log('INSERTED_USERS===', insertedUsers);
+      return insertedUsers;
     }
+
+    this.logger.log('Ending UserWithSuiteUsecaseService...');
 
     return [];
   }

@@ -1,5 +1,6 @@
 import { User as UserTO } from '../../shared/types/user';
 import { UserCreateInput } from '@prisma/client';
+import { UserWithIncludes } from './models/user-with-includes';
 
 export const transferObjectToUserCreate = (user: UserTO): UserCreateInput => ({
   id: user.id,
@@ -30,4 +31,29 @@ export const transferObjectToUserCreate = (user: UserTO): UserCreateInput => ({
   },
 });
 
-// export const modelToTransferObject = () => ({});
+export const modelToTransferObject = (userModel: UserWithIncludes): UserTO => ({
+  id: userModel.id,
+  addressId: userModel.addressId,
+  companyId: userModel.companyId,
+  email: userModel.email,
+  name: userModel.name,
+  phone: userModel.phone,
+  website: userModel.website,
+  company: {
+    id: userModel.Company.id,
+    bs: userModel.Company.bs,
+    catchPhrase: userModel.Company.catchPhrase,
+    name: userModel.Company.name
+  },
+  address: {
+    id: userModel.Address.id,
+    city: userModel.Address.city,
+    geoId: userModel.Address.geoId,
+    street: userModel.Address.street,
+    suite: userModel.Address.suite,
+    zipcode: userModel.Address.zipcode,
+    geo: {
+      ...userModel.Address.Geo
+    },
+  }
+});

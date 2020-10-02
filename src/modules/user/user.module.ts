@@ -8,6 +8,7 @@ import { ExternalUserService } from 'src/shared/services/external-user/external-
 import { ConfigurationService } from 'src/shared/configuration/configuration.service';
 import { ServicesModule } from 'src/shared/services/services.module';
 import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/user-with-suite-usecase.service';
+import { DownloadUsersUsecaseService } from './usecases/download-users-usecase/download-users-usecase.service';
 
 @Module({
   imports: [PrismaModule, ServicesModule],
@@ -16,7 +17,8 @@ import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/u
     ExternalUserService,
     ConfigurationService,
     Logger,
-    UserWithSuiteUsecaseService
+    UserWithSuiteUsecaseService,
+    DownloadUsersUsecaseService
   ],
   controllers: [UserController],
 })
