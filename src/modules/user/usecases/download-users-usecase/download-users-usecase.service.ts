@@ -1,8 +1,8 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { Usecase } from 'src/shared/models/user-case';
 
-import { FetchExternalUserService } from 'src/modules/user/services/fetch-external-user/external-user.service';
 import { UserDTO } from 'src/shared/dtos/user.dto';
+import { FetchExternalUserService } from '../../services/fetch-external-user/fetch-external-user.service';
 
 @Injectable()
 export class DownloadUsersUsecaseService implements Usecase<UserDTO[]> {

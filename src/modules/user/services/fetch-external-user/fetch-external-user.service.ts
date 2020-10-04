@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurationService } from 'src/shared/configuration/configuration.service';
-import { HttpClientService } from 'src/shared/http-client/http-client.service';
+import { ConfigurationService } from '../../../../shared/configuration/configuration.service';
+import { HttpClientService } from '../../../../shared/http-client/http-client.service';
 import { UserDTO } from 'src/shared/dtos/user.dto';
 
 @Injectable()

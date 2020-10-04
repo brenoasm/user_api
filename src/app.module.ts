@@ -5,7 +5,7 @@ import { ConfigurationModule } from './shared/configuration/configuration.module
 import { ConfigurationService } from './shared/configuration/configuration.service';
 import { HttpClientModule } from './shared/http-client/http-client.module';
 import { PrismaModule } from './shared/prisma/prisma.module';
-import { FetchExternalUserService } from './modules/user/services/fetch-external-user/external-user.service';
+import { FetchExternalUserService } from './modules/user/services/fetch-external-user/fetch-external-user.service';
 
 
 @Module({

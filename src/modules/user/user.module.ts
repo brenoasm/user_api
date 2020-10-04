@@ -1,14 +1,14 @@
 import { Logger, Module } from '@nestjs/common';
 
-import { PrismaModule } from 'src/shared/prisma/prisma.module';
+import { PrismaModule } from '../../shared/prisma/prisma.module';
+import { HttpClientModule } from '../../shared/http-client/http-client.module';
 
 import { UserService } from './services/user-service/user.service';
 import { UserController } from './user.controller';
-import { FetchExternalUserService } from 'src/modules/user/services/fetch-external-user/external-user.service';
-import { ConfigurationService } from 'src/shared/configuration/configuration.service';
 import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/user-with-suite-usecase.service';
 import { DownloadUsersUsecaseService } from './usecases/download-users-usecase/download-users-usecase.service';
-import { HttpClientModule } from 'src/shared/http-client/http-client.module';
+import { FetchExternalUserService } from './services/fetch-external-user/fetch-external-user.service';
+import { ConfigurationService } from '../../shared/configuration/configuration.service';
 
 @Module({
   imports: [PrismaModule, HttpClientModule],

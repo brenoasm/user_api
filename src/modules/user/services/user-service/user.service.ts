@@ -8,7 +8,8 @@ import {
   UserOrderByInput,
 } from '@prisma/client';
 
-import { PrismaService } from 'src/shared/prisma/prisma.service';
+import { PrismaService } from '../../../../shared/prisma/prisma.service';
+
 import { UserWithIncludes } from '../../models/user-with-includes';
 
 @Injectable()

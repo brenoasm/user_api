@@ -5,6 +5,7 @@ import { ContactDTO } from "./contact.dto";
 export class UserDTO {
   id: number
   name: string
+  username: string
   addressId?: number
   companyId?: number
   contactId?: number
@@ -12,6 +13,4 @@ export class UserDTO {
   address: AddressDTO
   company: CompanyDTO
   contact: ContactDTO
-
-
 }

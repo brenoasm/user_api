@@ -6,6 +6,7 @@ import { UserWithIncludes } from './models/user-with-includes';
 export const transferObjectToUserCreate = (user: UserDTO): UserCreateInput => ({
   id: user.id,
   name: user.name,
+  username: user.username,
   Contact: {
     create: {
       phone: user.contact.phone,
@@ -17,7 +18,7 @@ export const transferObjectToUserCreate = (user: UserDTO): UserCreateInput => ({
     create: {
       bs: user.company.bs,
       catchPhrase: user.company.catchPhrase,
-      name: user.company.catchPhrase,
+      name: user.company.name,
     }
   },
   Address: {
@@ -41,6 +42,7 @@ export const modelToTransferObject = (userModel: UserWithIncludes): UserDTO => (
   addressId: userModel.addressId,
   companyId: userModel.companyId,
   name: userModel.name,
+  username: userModel.username,
   contactId: userModel.contactId,
   contact: {
     id: userModel.Contact.id,

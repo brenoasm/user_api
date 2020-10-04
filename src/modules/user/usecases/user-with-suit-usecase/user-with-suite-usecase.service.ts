@@ -1,11 +1,11 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
-import { FetchExternalUserService } from 'src/modules/user/services/fetch-external-user/external-user.service';
 import { UserDTO as UserDTO } from 'src/shared/dtos/user.dto';
 
 import { modelToTransferObject, transferObjectToUserCreate } from '../../user.mapper';
 import { UserService } from '../../services/user-service/user.service';
 
 import { Usecase } from 'src/shared/models/user-case';
+import { FetchExternalUserService } from '../../services/fetch-external-user/fetch-external-user.service';
 
 @Injectable()
 export class UserWithSuiteUsecaseService implements Usecase<UserDTO[]> {

@@ -1,9 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
+
 import { DownloadUsersUsecaseService } from './usecases/download-users-usecase/download-users-usecase.service';
 import { UserWithSuiteUsecaseService } from './usecases/user-with-suit-usecase/user-with-suite-usecase.service';
 
 import { UserDTO } from 'src/shared/dtos/user.dto';
-import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 
 @ApiTags('user')
 @Controller('user')
